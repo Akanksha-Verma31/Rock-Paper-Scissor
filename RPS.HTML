@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissor</title>
+    <link rel="icon" type="image/x-icon" href="Rock.ico">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        var Compscore = 0;
+        var Yscore=0;
+        $(document).ready(function(){
+           
+            $("img").css({"height":"150px","width": "160px","margin-top":"150px","border-radius":"150px"});
+            $("body").css({"text-align": "center","background-color":"#acf7fc"});
+            $("#scissors").css({"margin-right":"15px"});
+            $("#rock").css({"margin-right":"15px"});
+            $("#paper").css({"margin-right":"15px"});
+
+            $("img").hover(function(){
+                $(this).css("opacity", "0.5");  
+            }, function(){  
+                $(this).css("opacity", "10"); 
+            });
+
+            $("#scissors").click(function(){
+                var result = compare('Scissors', computerChoice());
+                $("#decision").html(result);
+                $("#Cscore").html(Compscore);
+                $("#Yscore").html(Yscore);
+            });
+
+            $("#rock").click(function(){
+            var result = compare('Rock', computerChoice());
+            $("#decision").html(result);
+            $("#decision").html(result);
+            $("#Cscore").html(Compscore);
+            $("#Yscore").html(Yscore);
+        });
+            $("#paper").click(function(){
+            var result = compare('Paper', computerChoice());
+            $("#decision").html(result);
+            $("#decision").html(result);
+            $("#Cscore").html(Compscore);
+            $("#Yscore").html(Yscore);
+        });
+            $("#exit").click(function(){
+                $("#decision").hide();
+                $(".img").hide(1200);
+                $(this).hide();
+                $("div").hide();
+            });
+        });
+        
+        
+        var compare = function(me, opponent) {
+        if(me === 'Rock') {
+          
+            if(opponent === 'Rock') {
+                return 'Tie';
+            } else if (opponent === 'Paper') {
+              Compscore+=1;
+              return 'Your rock lost to paper :(';
+            } else if (opponent === 'Scissors') {
+              Yscore+=1;
+              return 'Your rock crushed scissors! :)';
+            }
+          
+        } else if (me === 'Paper') {
+          
+            if(opponent === 'Paper') {
+              return 'Tie';
+            } else if (opponent === 'Rock') {
+              Yscore+=1;
+              return 'Your paper beat rock :)';
+            } else if (opponent === 'Scissors') {
+              Compscore+=1;
+              return 'Your paper got cut by scissors! :)';
+          }
+        } else if (me === 'Scissors') {
+          
+            if(opponent === 'Scissors') {
+              return 'Tie';
+            } else if (opponent === 'Paper') {
+              Yscore+=1;
+              return 'Your scissor beat paper :(';
+            } else if (opponent === 'Rock') {
+              Compscore+=1;
+              return 'Your scissor got crushed! :)';
+          }
+        } else {
+          return "That doesn't make any sense!"
+        }
+      };
+      var computerChoice = function() {
+        var myArray = [
+                           "Rock",
+                           "Paper",
+                           "Scissors"
+                      ];
+
+        var randomItem = myArray[Math.floor(Math.random()*myArray.length)];
+        return randomItem;
+      };
+      $("document").ready(function(){
+        if(Yscore>5){
+           $("#scissors").remove();
+      }
+      else if(Compscore>10){
+
+      }
+      });
+     function thnks(){
+      document.getElementById("thnks").innerHTML="Thanks for playing!!";
+      document.getElementById("thnks").style.marginTop="300px";
+      document.getElementById("thnks").style.font="50px";
+
+     }
+    </script>
+    <style>
+      body{
+        color:white;
+        background-image: linear-gradient(to right, #0059ff , #00e1ff);
+      }
+      button{
+        font-size: 17px; 
+        margin-top: 235px;
+        background: #0077ff;
+        border-radius: 4px;
+        border-color: #0059ff;
+        box-shadow: 2px 2px 1px black, 0 0 25px #03b8ff, 0 0 5px rgb(3, 200, 255);
+      }
+      button:hover{
+        background-color: #00aaff;
+        font-size: 19px;
+      }
+      #thnks{
+        font-size:50px; 
+        margin-top: 100px; 
+        text-align: center;
+        color: white;
+        text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+      }
+      .tooltip {
+        position: relative;
+        display: inline-block;
+        border-bottom: 1px dotted black;
+}
+.tooltip .tooltiptext::after{
+  right: 100%;
+  font: 10px;
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent rgb(2, 200, 250) transparent transparent;
+}
+      .tooltip .tooltiptext {
+        margin-left: 9px;
+        margin-top: 235px;
+        font: 10px;
+        visibility: hidden;
+        width: 120px;
+        box-shadow: 2px 2px 1px black, 0 0 25px #0580fa, 0 0 5px rgb(35, 180, 253);
+        background-color: rgb(2, 200, 250);
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+
+  /* Position the tooltip */
+        position: absolute;
+        z-index: 2;
+       } 
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+    </style>
+</head>
+<body>
+    <div>
+        <h3 style="float:left;margin-top: 5px; margin-left: 10px;">Computer Score </h3>
+        <h3 style="float:right; margin-top:5px; margin-right: 10px;">Your Score</h3>
+        <h3 style="float:left; margin-top: 25px; margin-left: -75px;" id="Cscore">0</h3>
+        <h3 style="float:right; margin-top: 25px; margin-right: -45px;" id="Yscore">0</h3>
+    </div>
+    
+    <img src="Scissor.png" id="scissors" class="img">
+    <img id="paper" src="Paper.png" class="img">
+    <img id="rock" src="Rock.png" class="img">
+    <h1 id='decision'>Result</h1>
+    <p id="thnks"></p>
+    <div class="tooltip"><button id="exit" onclick="setTimeout(thnks,1500)" >Exit</button>
+      <span class="tooltiptext">Click here to exit</span>
+    </div>
+    
+</body>
+</html>
